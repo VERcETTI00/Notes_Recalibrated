@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:scrollbars="vertical">
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/back"
+        android:src="@drawable/ic_back_arrow"
+        android:background="@color/black"
+        android:layout_marginStart="40dp" />
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_next_arrow"
+        android:layout_toRightOf="@id/back"
+        android:id="@+id/next"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/black"
+        android:layout_toEndOf="@id/back" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title of the Note..."
+        android:textColorHint="@color/faded_white"
+        android:textSize="35sp"
+        android:layout_below="@+id/next"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/titleOfTheNote"
+        android:textColor="@color/white"
+        android:background="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleOfTheNote"
+        android:text="25 Apr 2021"
+        android:layout_marginLeft="40dp"
+        android:textColor="@color/faded_white"
+        android:id="@+id/date"
+        android:layout_marginStart="40dp" />
+
+    <EditText
+        android:layout_width="342dp"
+        android:layout_height="800dp"
+        android:layout_below="@+id/date"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your text here...."
+        android:gravity="start"
+        android:textColorHint="@color/faded_white"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:id="@+id/body"
+        android:background="@color/black"/>
+
+</RelativeLayout>

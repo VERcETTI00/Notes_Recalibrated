@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Notes"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp" />
+
+    <ImageButton
+        android:id="@+id/signOutButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/ic_sign_out"
+        android:layout_toRightOf="@id/text5"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginEnd="20dp"
+        android:layout_toEndOf="@id/text5"
+        android:layout_marginStart="130dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/text5"
+        android:layout_marginTop="20dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:scrollbars="vertical"
+            android:background="@color/black" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="39dp"
+            android:layout_marginRight="39dp"
+            android:layout_marginBottom="37dp"
+            android:src="@drawable/ic_outline_add_24" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

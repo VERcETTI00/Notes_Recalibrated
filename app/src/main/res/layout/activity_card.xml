@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="@color/black"
+    android:id="@+id/card_view">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/round_rect_red">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua."
+            android:textColor="@android:color/black"
+            android:padding="15dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25 Apr 2021"
+            android:textColor="@color/faded_black"
+            android:textSize="15sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="110dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
