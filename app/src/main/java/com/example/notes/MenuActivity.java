@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,8 @@ import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
 
+    ImageButton signOut;
+    FirebaseAuth auth;
     private RecyclerView xRecyclerView;
     private RecyclerView.Adapter xAdapter;
     private RecyclerView.LayoutManager xLayoutManager;
@@ -35,14 +39,19 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+//        xRecyclerView.notify();
+
+        signOut = findViewById(R.id.signOutButton);
+        auth = FirebaseAuth.getInstance();
+
+        xRecyclerView = findViewById(R.id.recyclerView);
+
         ArrayList<NOTES> exampleList = new ArrayList<>();
-        String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();/////////////////////
+        String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         firestore = FirebaseFirestore.getInstance();
         firestore.collection("user").document(currentUID).collection("notes")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//        CollectionReference noteRef = firestore.collection("users").document(currentUID).collection("notes");
-//        noteRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
@@ -53,6 +62,10 @@ public class MenuActivity extends AppCompatActivity {
                         System.out.println(notes.xhead);
                         System.out.println(notes.xbody);
                     }
+                    xRecyclerView.setHasFixedSize(true);
+                    xAdapter = new AdapterActivity(exampleList, MenuActivity.this);
+                    xRecyclerView.setLayoutManager(xLayoutManager);
+                    xRecyclerView.setAdapter(xAdapter);
                 }
                 else
                     System.out.println("Error Getting Docs");
@@ -60,26 +73,23 @@ public class MenuActivity extends AppCompatActivity {
         });
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
 
-
-//        exampleList.add(new NOTES("tellus in metus vulputate eu", "20 Apr 2021"));
-//        exampleList.add(new NOTES("asdfghjksdfghjkfghjkl", "20 Apr 2021"));
-//        exampleList.add(new NOTES("asdfghjksdfghjkfghjkl", "20 Apr 2021"));
-//        exampleList.add(new NOTES("asdfghjksdfghjkfghjkl", "20 Apr 2021"));
-//        exampleList.add(new NOTES("asdfghjksdfghjkfghjkl", "20 Apr 2021"));
-//        exampleList.add(new NOTES("test hardcoded", "7 may 2021"));
-
-        xRecyclerView = findViewById(R.id.recyclerView);
-        xRecyclerView.setHasFixedSize(true);
         xLayoutManager = new LinearLayoutManager(this);
-        xAdapter = new AdapterActivity(exampleList);
-
-        xRecyclerView.setLayoutManager(xLayoutManager);
-        xRecyclerView.setAdapter(xAdapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(MenuActivity.this,CreateActivity.class));
+            }
+        });
+
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this,LoginActivity.class);
+                auth.signOut();
+                startActivity(intent);
+                finish();
             }
         });
     }

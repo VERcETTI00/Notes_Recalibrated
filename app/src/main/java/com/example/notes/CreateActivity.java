@@ -52,6 +52,8 @@ public class CreateActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(CreateActivity.this, MenuActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -63,7 +65,7 @@ public class CreateActivity extends AppCompatActivity {
                 String mBody = body.getText().toString();
                 loginClick(mHead,mBody);
                 finish();
-//                startActivity(new Intent(CreateActivity.this,MenuActivity.class));
+                startActivity(new Intent(CreateActivity.this,MenuActivity.class));
             }
         });
 
