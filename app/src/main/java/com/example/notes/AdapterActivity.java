@@ -2,6 +2,7 @@ package com.example.notes;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AdapterActivity extends RecyclerView.Adapter<AdapterActivity.RecyclerViewHolder>{
 
@@ -53,11 +56,22 @@ public class AdapterActivity extends RecyclerView.Adapter<AdapterActivity.Recycl
         final Drawable purpleBackground = ContextCompat.getDrawable(context, R.drawable.round_rect_purple);
         final Drawable greenBackground = ContextCompat.getDrawable(context, R.drawable.round_rect_green);
 
-
         NOTES currentItem = xList.get(position);
 
         holder.xHeadView.setText(currentItem.getHead());
-        holder.xDateView.setText(currentItem.getDate());
+        String date = new SimpleDateFormat("EEEE  HH:mm  dd-MM-yyyy", Locale.getDefault()).format(currentItem.getDate());
+        holder.xDateView.setText(date);
+
+        holder.cardBody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CreateActivity.class);
+                intent.putExtra("title",xList.get(holder.getPosition()).head);
+                intent.putExtra("body", xList.get(holder.getPosition()).body);
+                intent.putExtra("doc", xList.get(holder.getPosition()).documentId);
+                context.startActivity(intent);
+            }
+        });
 
         if((position+1) == 1)
         holder.cardBody.setBackground(redBackground);

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -15,15 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -50,17 +50,18 @@ public class MenuActivity extends AppCompatActivity {
         String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         firestore = FirebaseFirestore.getInstance();
-        firestore.collection("user").document(currentUID).collection("notes")
+        firestore.collection("user").document(currentUID).collection("notes").orderBy("date", Query.Direction.DESCENDING)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d("Note Data", document.getId() + " => " + document.getData());
-                        NOTES notes = new NOTES(document.get("title").toString(),document.get("data").toString());
+                        NOTES notes = new NOTES(document.get("title").toString(),document.get("data").toString(), document.getDate("date"), document.getId());
                         exampleList.add(notes);
-                        System.out.println(notes.xhead);
-                        System.out.println(notes.xbody);
+                        System.out.println(notes.head);
+                        System.out.println(notes.body);
+                        System.out.println(document.get("date"));
                     }
                     xRecyclerView.setHasFixedSize(true);
                     xAdapter = new AdapterActivity(exampleList, MenuActivity.this);

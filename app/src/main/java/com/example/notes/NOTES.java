@@ -1,30 +1,33 @@
 package com.example.notes;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class NOTES {
-    String xhead;
-    String xbody;
-    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    String head;
+    String body;
+    Date date;
+    String documentId;
+   // final String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-    public NOTES(String head, String body){
-        xhead = head;
-        xbody = body;
+    public NOTES(String head, String body, Date date , String documentId){
+        this.head = head;
+        this.body = body;
+        this.date = date;
+        this.documentId = documentId;
     }
 
     public String getHead(){
-        return xhead;
+        return head;
     }
 
     public String getBody(){
-        return xbody;
+        return body;
     }
 
-    public String getDate(){
+    public Date getDate(){
         return date;
     }
+
+    public String getDocumentId(){return documentId;}
 }
 
 

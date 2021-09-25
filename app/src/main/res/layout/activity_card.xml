@@ -21,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:padding="15dp"
             android:text="Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua."
             android:textColor="@android:color/black"
-            android:padding="15dp"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -31,11 +31,11 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="110dp"
             android:text="25 Apr 2021"
             android:textColor="@color/faded_black"
-            android:textSize="15sp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="110dp"/>
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

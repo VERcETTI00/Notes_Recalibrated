@@ -13,11 +13,15 @@ public class MainActivity extends AppCompatActivity {
 
     Button signInButton;
     Button signUpButton;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            startActivity(new Intent(MainActivity.this, MenuActivity.class));
+        }
 
         signInButton = findViewById(R.id.signInButton1);
         signInButton.setOnClickListener(new View.OnClickListener() {

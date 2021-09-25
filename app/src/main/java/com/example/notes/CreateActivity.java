@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,9 @@ public class CreateActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     NOTES NOTES;
+    String documentId = "";
+    String existingTitle = "";
+    String existingBody = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +42,25 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
         db = FirebaseFirestore.getInstance();
 
+        Bundle bundle = getIntent().getExtras();
+
+        try{
+            existingTitle = bundle.getString("title");
+            existingBody = bundle.getString("body");
+            documentId = bundle.getString("doc");
+        }catch (Exception e){
+
+        }
+
         backButton = findViewById(R.id.back);
         next = findViewById(R.id.next);
 
         head = findViewById(R.id.titleOfTheNote);
         date = findViewById(R.id.date);
         body = findViewById(R.id.body);
+
+        head.setText(existingTitle);
+        body.setText(existingBody);
 
 
 //        mDate = NOTES.getDate();
@@ -63,7 +80,7 @@ public class CreateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String mHead = head.getText().toString();
                 String mBody = body.getText().toString();
-                loginClick(mHead,mBody);
+                onNextClicked(mHead,mBody);
                 finish();
                 startActivity(new Intent(CreateActivity.this,MenuActivity.class));
             }
@@ -71,17 +88,23 @@ public class CreateActivity extends AppCompatActivity {
 
     }
 
-    public void loginClick(String mHead, String mBody) {
-        NOTES = new NOTES(mHead,mBody);
-        createNote(mHead,mBody);
-
+    public void onNextClicked(String mHead, String mBody) {
+        if(documentId.isEmpty()){
+            NOTES = new NOTES(mHead,mBody, new Date(),"");
+            createNote();
+        }
+        else{
+            NOTES = new NOTES(mHead,mBody, new Date(),documentId);
+            updateNote();
+        }
     }
 
-    public void createNote(String mHead, String mBody) {
+    public void createNote() {
         String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Map<String,Object> customNote =new HashMap<>();
-        customNote.put("title", NOTES.xhead);
-        customNote.put("data", NOTES.xbody);
+        customNote.put("title", NOTES.head);
+        customNote.put("data", NOTES.body);
+        customNote.put("date", NOTES.date);
         db.collection("user").document(currentUID).collection("notes")
                 .add(customNote)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -96,5 +119,26 @@ public class CreateActivity extends AppCompatActivity {
                         Toast.makeText(CreateActivity.this, "Failed to create note", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void updateNote(){
+        String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Map<String,Object> customNote =new HashMap<>();
+        customNote.put("title", NOTES.head);
+        customNote.put("data", NOTES.body);
+        customNote.put("date", NOTES.date);
+        db.collection("user").document(currentUID).collection("notes").document(NOTES.documentId)
+                .set(customNote)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(@NonNull Void unused) {
+                        Toast.makeText(CreateActivity.this, "New Note Updated Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(CreateActivity.this, "Failed to update note", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
