@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context="com.example.notes.MainActivity">
+
+    <ImageView
+        android:id="@+id/notesImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_notes_splash"
+        android:layout_marginTop="-70dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:text="The Notes"
+        android:gravity="center_horizontal"
+        android:textSize="35sp"
+        android:layout_marginTop="400dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="VERcETTI"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="700dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
