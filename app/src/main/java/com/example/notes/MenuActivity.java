@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +18,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -50,28 +54,48 @@ public class MenuActivity extends AppCompatActivity {
         String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         firestore = FirebaseFirestore.getInstance();
-        firestore.collection("user").document(currentUID).collection("notes").orderBy("date", Query.Direction.DESCENDING)
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        final Query notesListCollectionRef = firestore.collection("user").document(currentUID).collection("notes").orderBy("date", Query.Direction.DESCENDING);
+        notesListCollectionRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("Note Data", document.getId() + " => " + document.getData());
-                        NOTES notes = new NOTES(document.get("title").toString(),document.get("data").toString(), document.getDate("date"), document.getId());
-                        exampleList.add(notes);
-                        System.out.println(notes.head);
-                        System.out.println(notes.body);
-                        System.out.println(document.get("date"));
-                    }
-                    xRecyclerView.setHasFixedSize(true);
-                    xAdapter = new AdapterActivity(exampleList, MenuActivity.this);
-                    xRecyclerView.setLayoutManager(xLayoutManager);
-                    xRecyclerView.setAdapter(xAdapter);
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                exampleList.clear();
+                for (DocumentSnapshot document : value.getDocuments()) {
+                    Log.d("Note Data", document.getId() + " => " + document.getData());
+                    NOTES notes = new NOTES(document.get("title").toString(),document.get("data").toString(), document.getDate("date"), document.getId());
+                    exampleList.add(notes);
+                    System.out.println(notes.head);
+                    System.out.println(notes.body);
+                    System.out.println(document.get("date"));
                 }
-                else
-                    System.out.println("Error Getting Docs");
+                xRecyclerView.setHasFixedSize(true);
+                xAdapter = new AdapterActivity(exampleList, MenuActivity.this);
+                xRecyclerView.setLayoutManager(xLayoutManager);
+                xRecyclerView.setAdapter(xAdapter);
             }
         });
+//        firestore.collection("user").document(currentUID).collection("notes").orderBy("date", Query.Direction.DESCENDING)
+//                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()){
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        Log.d("Note Data", document.getId() + " => " + document.getData());
+//                        NOTES notes = new NOTES(document.get("title").toString(),document.get("data").toString(), document.getDate("date"), document.getId());
+//                        exampleList.add(notes);
+//                        System.out.println(notes.head);
+//                        System.out.println(notes.body);
+//                        System.out.println(document.get("date"));
+//                    }
+//                    xRecyclerView.setHasFixedSize(true);
+//                    xAdapter = new AdapterActivity(exampleList, MenuActivity.this);
+//                    xRecyclerView.setLayoutManager(xLayoutManager);
+//                    xRecyclerView.setAdapter(xAdapter);
+//                }
+//                else
+//                    System.out.println("Error Getting Docs");
+//            }
+//        });
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
 
         xLayoutManager = new LinearLayoutManager(this);
@@ -79,7 +103,7 @@ public class MenuActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                //finish();
                 startActivity(new Intent(MenuActivity.this,CreateActivity.class));
             }
         });

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_delete.xml" value="0.28615384615384615" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_notes_clip_art.xml" value="0.290625" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_notes_splash.xml" value="0.290625" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/notes_splash.xml" value="0.290625" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/round_rect_red.xml" value="0.290625" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/round_rect_yellow.xml" value="0.290625" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_card.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_create.xml" value="0.26851851851851855" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_menu.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/slaye/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_splash.xml" value="0.27447916666666666" />

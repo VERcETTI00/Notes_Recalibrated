@@ -18,16 +18,16 @@
         android:layout_marginStart="40dp" />
 
     <ImageButton
+        android:id="@+id/next"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_next_arrow"
-        android:layout_toRightOf="@id/back"
-        android:id="@+id/next"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="200dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="40dp"
+        android:layout_toEndOf="@id/back"
+        android:layout_toRightOf="@id/back"
         android:background="@color/black"
-        android:layout_toEndOf="@id/back" />
+        android:src="@drawable/ic_next_arrow" />
 
     <EditText
         android:layout_width="match_parent"
@@ -65,5 +65,15 @@
         android:textColor="@color/white"
         android:id="@+id/body"
         android:background="@color/black"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/delete"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="250dp"
+        tools:ignore="MissingClass"
+        android:src="@drawable/ic_delete" />
+
 
 </RelativeLayout>

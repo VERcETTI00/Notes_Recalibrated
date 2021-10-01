@@ -1,7 +1,10 @@
 package com.example.notes;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +29,7 @@ public class CreateActivity extends AppCompatActivity {
 
     ImageButton backButton;
     ImageButton next;
+    FloatingActionButton fab;
 
     EditText head;
     TextView date;
@@ -54,6 +59,7 @@ public class CreateActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.back);
         next = findViewById(R.id.next);
+        fab = findViewById(R.id.delete);
 
         head = findViewById(R.id.titleOfTheNote);
         date = findViewById(R.id.date);
@@ -69,8 +75,6 @@ public class CreateActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateActivity.this, MenuActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -82,10 +86,37 @@ public class CreateActivity extends AppCompatActivity {
                 String mBody = body.getText().toString();
                 onNextClicked(mHead,mBody);
                 finish();
-                startActivity(new Intent(CreateActivity.this,MenuActivity.class));
             }
         });
 
+        if (documentId.isEmpty()){
+            fab.setVisibility(View.INVISIBLE);
+        }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               onDeleteClicked();
+            }
+        });
+
+    }
+    public void onDeleteClicked(){
+        String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.collection("user").document(currentUID).collection("notes").document(documentId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        finish();
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
     }
 
     public void onNextClicked(String mHead, String mBody) {
