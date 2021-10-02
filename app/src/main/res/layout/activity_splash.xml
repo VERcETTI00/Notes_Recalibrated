@@ -1,35 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="com.example.notes.MainActivity">
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    tools:context=".MenuActivity">
 
     <ImageView
         android:id="@+id/notesImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="785dp"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="center"
+        android:layout_marginBottom="60dp"
         android:src="@drawable/ic_notes_splash"
-        android:layout_marginTop="-70dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/white"
-        android:text="The Notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="233dp"
+        android:layout_marginBottom="310dp"
         android:gravity="center_horizontal"
-        android:textSize="35sp"
-        android:layout_marginTop="400dp"/>
+        android:text="The Notes"
+        android:textColor="@color/white"
+        android:textSize="35sp" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="VERcETTI"
-        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="700dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="700dp"/>
+        android:text="VERcETTI"
+        android:textColor="@color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
