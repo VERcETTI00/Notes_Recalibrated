@@ -21,8 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class CreateActivity extends AppCompatActivity {
@@ -68,6 +70,8 @@ public class CreateActivity extends AppCompatActivity {
         head.setText(existingTitle);
         body.setText(existingBody);
 
+        String mDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
+        date.setText(mDate);
 
 //        mDate = NOTES.getDate();
 //        date.setText(mDate);
