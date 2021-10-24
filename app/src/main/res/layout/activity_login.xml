@@ -31,43 +31,43 @@
         android:id="@+id/mailLogin"
         android:layout_width="296dp"
         android:layout_height="50dp"
-        android:background="@drawable/text_box"
-        android:hint="Email"
-        android:textColorHint="@color/faded_black"
-        android:textColor="@color/white"
         android:layout_below="@+id/text4"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="160dp"
+        android:background="@drawable/text_box"
+        android:hint="Email"
+        android:inputType="text"
+        android:lines="1"
         android:paddingHorizontal="15dp"
         android:paddingVertical="10dp"
-        android:inputType="text"
-        android:lines="1"/>
+        android:textColor="@color/white"
+        android:textColorHint="@color/faded_black" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="296dp"
         android:layout_height="50dp"
+        android:layout_below="@id/mailLogin"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/text_box"
         android:hint="Password"
-        android:textColorHint="@color/faded_black"
-        android:textColor="@color/white"
         android:inputType="textPassword"
         android:lines="1"
-        android:layout_below="@id/mailLogin"
         android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp" />
+        android:paddingVertical="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/faded_black" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logInButton"
         android:layout_width="296dp"
         android:layout_height="43dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/round_rect"
         android:text="Sign In"
-        android:textColor="@color/black"
-        android:layout_below="@+id/password"/>
+        android:textColor="@color/black" />
 
 </RelativeLayout>

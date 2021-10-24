@@ -79,27 +79,27 @@
         android:id="@+id/signUpPass"
         android:layout_width="296dp"
         android:layout_height="50dp"
+        android:layout_below="@id/phoneNo"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/text_box"
         android:hint="Password"
-        android:textColorHint="@color/faded_black"
-        android:textColor="@color/white"
         android:inputType="textPassword"
         android:lines="1"
-        android:layout_below="@id/phoneNo"
         android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp" />
+        android:paddingVertical="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/faded_black" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUpButton"
         android:layout_width="296dp"
         android:layout_height="43dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginBottom="91dp"
         android:background="@drawable/round_rect"
         android:text="Sign Up"
-        android:textColor="@color/black"
-        android:layout_below="@+id/signUpPass"/>
+        android:textColor="@color/black" />
 
 </RelativeLayout>

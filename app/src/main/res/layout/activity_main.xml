@@ -28,17 +28,17 @@
         android:layout_marginHorizontal="70dp"
         android:textSize="40sp"/>
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:text="Welcome To The Ultimate\nDigital Note Making App"
-        android:layout_below="@id/text1"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
-        android:textSize="25sp"/>
+     <TextView
+         android:id="@+id/text2"
+         android:layout_width="match_parent"
+         android:layout_height="70dp"
+         android:layout_below="@id/text1"
+         android:layout_marginLeft="70dp"
+         android:layout_marginTop="20dp"
+         android:layout_marginRight="20dp"
+         android:text="Welcome To The Ultimate\nDigital Note Making App"
+         android:textColor="@color/white"
+         android:textSize="25sp" />
 
 <!--    <Button-->
 <!--        android:layout_width="250dp"-->
@@ -54,10 +54,10 @@
          android:id="@+id/signInButton1"
          android:layout_width="250dp"
          android:layout_height="40dp"
-         android:layout_below="@+id/text2"
+         android:layout_above="@+id/signUpButton1"
          android:layout_gravity="center"
          android:layout_marginHorizontal="70dp"
-         android:layout_marginTop="50dp"
+         android:layout_marginBottom="20dp"
          android:background="@drawable/round_rect"
          android:text="Sign In"
          android:textColor="@color/black" />
@@ -66,12 +66,12 @@
          android:id="@+id/signUpButton1"
          android:layout_width="250dp"
          android:layout_height="40dp"
-         android:layout_below="@+id/signInButton1"
-         android:background="@drawable/round_rect"
+         android:layout_alignParentBottom="true"
+         android:layout_gravity="center"
          android:layout_marginHorizontal="70dp"
-         android:layout_marginTop="20dp"
+         android:layout_marginBottom="97dp"
+         android:background="@drawable/round_rect"
          android:text="Sign Up"
-         android:textColor="@color/black"
-         android:layout_gravity="center"/>
+         android:textColor="@color/black" />
 
 </RelativeLayout>
